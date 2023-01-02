@@ -1,6 +1,8 @@
 ﻿using DemoWork.DataLayer.DataLayer;
 using DemoWork.Entities.Models;
 using DemoWork.ServiceLayer.WebAPIs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace DemoWork.APIs.Controllers
 {
+    [Authorize (AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -36,6 +39,7 @@ namespace DemoWork.APIs.Controllers
             return users;
         }
 
+        
         [HttpGet]
         [Route("GetUserById")]
         public async Task<ActionResult<User>> GetUserById(Guid userId)

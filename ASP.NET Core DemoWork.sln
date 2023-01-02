@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWork.DataLayer", "DemoW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWork.APIs", "DemoWork.APIs\DemoWork.APIs.csproj", "{CCF2219A-D6DA-4B0E-82AC-CECC7703B580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWork.Administration", "DemoWork.Administration\DemoWork.Administration.csproj", "{6A254555-5A4E-4070-8DF6-B8986B47948C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWork.Administration", "DemoWork.Administration\DemoWork.Administration.csproj", "{6A254555-5A4E-4070-8DF6-B8986B47948C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWork.ServiceLayer", "DemoWork.ServiceLayer\DemoWork.ServiceLayer.csproj", "{A63DBBA2-9C71-40EB-B352-DFC5F716590F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoWork.ServiceLayer", "DemoWork.ServiceLayer\DemoWork.ServiceLayer.csproj", "{A63DBBA2-9C71-40EB-B352-DFC5F716590F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWork.Common", "DemoWork.Common\DemoWork.Common.csproj", "{5F050679-7A84-4DFA-98D0-18D64C21DD9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A63DBBA2-9C71-40EB-B352-DFC5F716590F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A63DBBA2-9C71-40EB-B352-DFC5F716590F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A63DBBA2-9C71-40EB-B352-DFC5F716590F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F050679-7A84-4DFA-98D0-18D64C21DD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F050679-7A84-4DFA-98D0-18D64C21DD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F050679-7A84-4DFA-98D0-18D64C21DD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F050679-7A84-4DFA-98D0-18D64C21DD9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
