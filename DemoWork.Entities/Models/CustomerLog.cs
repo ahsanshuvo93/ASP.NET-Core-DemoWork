@@ -6,18 +6,21 @@ using System.Text;
 
 namespace DemoWork.Entities.Models
 {
-    [Table("UserLog")]
-    public class UserLog
+    [Table("CustomerLog")]
+    public class CustomerLog
     {
-        public Guid UserLogId { get; set; }
+        public Guid CustomerLogId { get; set; }
 
         [Required(ErrorMessage = "MachineKey is Required")]
         [StringLength(100, ErrorMessage = "MachineKey can't be longer than 100 characters")]
         public string MachineKey { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        [ForeignKey(nameof(Customer))]
+        public Guid CustomerId { get; set; }
+        public Customer Customer { get; set; }
+
+        public string PhysicalAddress { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         [StringLength(10, ErrorMessage = "Status can't be longer than 10 characters")]

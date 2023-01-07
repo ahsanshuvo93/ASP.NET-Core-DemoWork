@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 namespace ASP.NET_Core_DemoWork.Areas.WebApplication.Controllers
 {
     [Area("WebApplication")]
-    public class UserController : Controller
+    public class CustomerController : Controller
     {
-        private readonly UserService _userService;
+        private readonly CustomerService _customerService;
 
-        public UserController()
+        public CustomerController()
         {
-            _userService = new UserService();
+            _customerService = new CustomerService();
         }
 
         public async Task<IActionResult> Index()
         {
             
-            var model = await _userService.GetAllUsers();
+            var model = await _customerService.GetAllCustomers();
             return View();
         }
     }

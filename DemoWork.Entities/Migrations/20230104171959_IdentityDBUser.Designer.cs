@@ -4,14 +4,16 @@ using DemoWork.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DemoWork.Entities.Migrations
 {
     [DbContext(typeof(DemoWorkContext))]
-    partial class DemoWorkContextModelSnapshot : ModelSnapshot
+    [Migration("20230104171959_IdentityDBUser")]
+    partial class IdentityDBUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,9 +21,9 @@ namespace DemoWork.Entities.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("DemoWork.Entities.Models.Customer", b =>
+            modelBuilder.Entity("DemoWork.Entities.Models.User", b =>
                 {
-                    b.Property<Guid>("CustomerId")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -36,12 +38,7 @@ namespace DemoWork.Entities.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FullName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -51,49 +48,41 @@ namespace DemoWork.Entities.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("Status")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("UserId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("User");
                 });
 
-            modelBuilder.Entity("DemoWork.Entities.Models.CustomerLog", b =>
+            modelBuilder.Entity("DemoWork.Entities.Models.UserLog", b =>
                 {
-                    b.Property<Guid>("CustomerLogId")
+                    b.Property<Guid>("UserLogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("MachineKey")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PhysicalAddress")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Status")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("CustomerLogId");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("UserLogId");
 
-                    b.ToTable("CustomerLog");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserLog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -292,15 +281,15 @@ namespace DemoWork.Entities.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DemoWork.Entities.Models.CustomerLog", b =>
+            modelBuilder.Entity("DemoWork.Entities.Models.UserLog", b =>
                 {
-                    b.HasOne("DemoWork.Entities.Models.Customer", "Customer")
-                        .WithMany("CustomerLogs")
-                        .HasForeignKey("CustomerId")
+                    b.HasOne("DemoWork.Entities.Models.User", "User")
+                        .WithMany("Accounts")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -354,9 +343,9 @@ namespace DemoWork.Entities.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DemoWork.Entities.Models.Customer", b =>
+            modelBuilder.Entity("DemoWork.Entities.Models.User", b =>
                 {
-                    b.Navigation("CustomerLogs");
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

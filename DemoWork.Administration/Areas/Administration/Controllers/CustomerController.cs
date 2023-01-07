@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 namespace DemoWork.Administration.Areas.Administration.Controllers
 {
     [Area("Administration")]
-    public class UserController : Controller
+    public class CustomerController : Controller
     {
-        private readonly UserService _userService;
+        private readonly CustomerService _customerService;
 
-        public UserController()
+        public CustomerController()
         {
-            _userService = new UserService();
+            _customerService = new CustomerService();
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await _userService.GetUsers();
+            var model = await _customerService.GetCustomers();
             return View();
         }
     }

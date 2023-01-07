@@ -6,14 +6,22 @@ using System.Text;
 
 namespace DemoWork.Entities.Models
 {
-    [Table("User")]
-    public class User
+    [Table("Customer")]
+    public class Customer
     {
-        public Guid UserId { get; set; }
+        public Guid CustomerId { get; set; }
 
-        [Required(ErrorMessage = "Name is Required")]
-        [StringLength(100, ErrorMessage = "Name can't be longer than 100 characters")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "FullName is Required")]
+        [StringLength(100, ErrorMessage = "FullName can't be longer than 100 characters")]
+        public string FullName { get; set; }
+
+        [Required(ErrorMessage = "Email is Required")]
+        [StringLength(100, ErrorMessage = "Email can't be longer than 100 characters")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "PhoneNumber is Required")]
+        [StringLength(100, ErrorMessage = "PhoneNumber can't be longer than 100 characters")]
+        public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Date of Birth is Required")]
         public DateTime DateOfBirth { get; set; }
@@ -26,7 +34,7 @@ namespace DemoWork.Entities.Models
         [StringLength(500, ErrorMessage = "Password can't be longer than 500 characters")]
         public string Password { get; set; }
 
-        public ICollection<UserLog> Accounts { get; set; }
+        public ICollection<CustomerLog> CustomerLogs { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

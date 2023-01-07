@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace DemoWork.ServiceLayer.Administration
 {
-    public class UserService
+    public class CustomerService
     {
-        private readonly UserDataLayer _userDataLayer;
-        public UserService()
+        private readonly CustomerDataLayer _customerDataLayer;
+        public CustomerService()
         {
-            _userDataLayer = new UserDataLayer();
+            _customerDataLayer = new CustomerDataLayer();
         }
 
-        public async Task<List<User>> GetUsers()
+        public async Task<List<Customer>> GetCustomers()
         {
             //var owners = await _context.Owners.ToListAsync();
-            var user = await _userDataLayer.GetAll();
+            var customer = await _customerDataLayer.GetAll();
 
-            return user;
+            return customer;
         }
     }
 }
