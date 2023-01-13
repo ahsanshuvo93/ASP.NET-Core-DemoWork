@@ -1,4 +1,5 @@
-﻿using DemoWork.Entities;
+﻿using DemoWork.DataLayer.BaseRepository;
+using DemoWork.Entities;
 using DemoWork.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,18 +12,26 @@ namespace DemoWork.DataLayer.DataLayer
 {
     public class CustomerDataLayer
     {
-        private DemoWorkContext _demoWorkContext;
+        //private DemoWorkContext _demoWorkContext;
+
+        //public CustomerDataLayer()
+        //{
+        //    _demoWorkContext = new DemoWorkContext();
+        //}
+
+
+        private IUnitOfWork uow;
 
         public CustomerDataLayer()
         {
-            _demoWorkContext = new DemoWorkContext();
+            uow = new UnitOfWork();
         }
 
-        public async Task<List<Customer>> GetAll()
+        public async Task<IEnumerable<Customer>> GetAll()
         {
             try
             {
-                var customers = await _demoWorkContext.Customers.ToListAsync();
+                var customers = await uow.CustomerRepository.GetAllAsync();
                 return customers;
             }
             catch (Exception ex)
@@ -32,11 +41,11 @@ namespace DemoWork.DataLayer.DataLayer
             }            
         }
 
-        public async Task<List<Customer>> GetActive()
+        public async Task<IEnumerable<Customer>> GetActive()
         {
             try
             {
-                var customers = await _demoWorkContext.Customers.Where(s => s.Status == "Active").ToListAsync();
+                var customers = await uow.CustomerRepository.GetManyAsync();
                 return customers;
             }
             catch (Exception ex)
@@ -50,7 +59,7 @@ namespace DemoWork.DataLayer.DataLayer
         {
             try
             {
-                var customer = await _demoWorkContext.Customers.FindAsync(customerId);
+                var customer = await uow.CustomerRepository.FindAsync(customerId);
                 return customer;
             }
             catch (Exception ex)
@@ -67,8 +76,7 @@ namespace DemoWork.DataLayer.DataLayer
                 customer.CreatedAt = DateTime.Now;
                 customer.Status = "Active";
 
-                await _demoWorkContext.Customers.AddAsync(customer);
-                await _demoWorkContext.SaveChangesAsync();
+                await uow.CustomerRepository.AddAsync(customer);
 
                 return customer;
             }
@@ -83,7 +91,7 @@ namespace DemoWork.DataLayer.DataLayer
         {
             try
             {
-                var result = await _demoWorkContext.Customers.FindAsync(customer.CustomerId);
+                var result = await uow.CustomerRepository.FindAsync(customer.CustomerId);
 
                 result.FullName = customer.FullName;
                 result.Email = customer.Email;
@@ -93,8 +101,7 @@ namespace DemoWork.DataLayer.DataLayer
                 result.Password = customer.Password;
                 result.Status = customer.Status;
 
-                _demoWorkContext.Entry(result).State = EntityState.Modified;
-                await _demoWorkContext.SaveChangesAsync();
+                await uow.CustomerRepository.EditAsync(result);
 
                 return customer;
             }

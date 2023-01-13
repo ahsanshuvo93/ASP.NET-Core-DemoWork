@@ -15,7 +15,7 @@ namespace DemoWork.ServiceLayer.Administration
             _customerDataLayer = new CustomerDataLayer();
         }
 
-        public async Task<List<Customer>> GetCustomers()
+        public async Task<IEnumerable<Customer>> GetCustomers()
         {
             //var owners = await _context.Owners.ToListAsync();
             var customer = await _customerDataLayer.GetAll();

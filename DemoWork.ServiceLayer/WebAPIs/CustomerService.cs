@@ -15,7 +15,7 @@ namespace DemoWork.ServiceLayer.WebAPIs
             _customerDataLayer = new CustomerDataLayer();
         }
 
-        public async Task<List<Customer>> GetAllCustomers()
+        public async Task<IEnumerable<Customer>> GetAllCustomers()
         {
             var customer = await _customerDataLayer.GetActive();
             return customer;

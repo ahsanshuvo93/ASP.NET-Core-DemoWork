@@ -27,19 +27,19 @@ namespace DemoWork.APIs.Controllers
 
         [HttpGet]
         [Route("GetCustomers")]
-        public async Task<ActionResult<List<Customer>>> GetCustomers()
+        public async Task<IEnumerable<Customer>> GetCustomers()
         {
             var response = await _customerService.GetAllCustomers();
 
             if (response == null)
             {
-                return NotFound();
+                return null;
             }
 
             return response;
         }
 
-        
+
         [HttpGet]
         [Route("GetCustomerById")]
         public async Task<ActionResult<Customer>> GetCustomerById(Guid customerId)
