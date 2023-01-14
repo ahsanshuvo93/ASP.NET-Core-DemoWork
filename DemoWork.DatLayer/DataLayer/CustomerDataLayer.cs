@@ -21,10 +21,12 @@ namespace DemoWork.DataLayer.DataLayer
 
 
         private IUnitOfWork uow;
+        private DemoWorkContext _demoWorkContext;
 
         public CustomerDataLayer()
         {
             uow = new UnitOfWork();
+            _demoWorkContext = new DemoWorkContext();
         }
 
         public async Task<IEnumerable<Customer>> GetAll()
@@ -45,7 +47,13 @@ namespace DemoWork.DataLayer.DataLayer
         {
             try
             {
-                var customers = await uow.CustomerRepository.GetManyAsync();
+                var customers = await uow.CustomerRepository.GetManyAsync(
+                                    filter: s => s.Status == "Active",
+                                    orderBy: s => s.OrderBy(s => s.FullName),
+                                    top: 3,
+                                    skip: 1
+                                );
+
                 return customers;
             }
             catch (Exception ex)
@@ -60,6 +68,7 @@ namespace DemoWork.DataLayer.DataLayer
             try
             {
                 var customer = await uow.CustomerRepository.FindAsync(customerId);
+
                 return customer;
             }
             catch (Exception ex)
