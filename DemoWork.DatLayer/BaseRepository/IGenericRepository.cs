@@ -20,7 +20,8 @@ namespace DemoWork.DataLayer.BaseRepository
                                           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                                           int? top = null,
                                           int? skip = null,
-                                          params string[] includeProperties);
+                                          params string[] includeProperties
+                                          );
 
 
     }

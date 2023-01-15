@@ -68,7 +68,8 @@ namespace DemoWork.DataLayer.BaseRepository
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             int? top = null,
             int? skip = null,
-            params string[] includeProperties)
+            params string[] includeProperties
+            )
         {
             IQueryable<T> query = _dbSet;
 
@@ -81,6 +82,8 @@ namespace DemoWork.DataLayer.BaseRepository
             {
                 query = includeProperties.Aggregate(query, (theQuery, theInclude) => theQuery.Include(theInclude));
             }
+
+
 
             if (orderBy != null)
             {
@@ -101,7 +104,7 @@ namespace DemoWork.DataLayer.BaseRepository
         }
 
 
-
+       
 
 
     }

@@ -50,8 +50,9 @@ namespace DemoWork.DataLayer.DataLayer
                 var customers = await uow.CustomerRepository.GetManyAsync(
                                     filter: s => s.Status == "Active",
                                     orderBy: s => s.OrderBy(s => s.FullName),
-                                    top: 3,
-                                    skip: 1
+                                    top: 5,
+                                    skip: 0,
+                                    includeProperties: "CustomerLogs"
                                 );
 
                 return customers;
