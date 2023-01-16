@@ -55,6 +55,8 @@ namespace DemoWork.DataLayer.DataLayer
                                     includeProperties: "CustomerLogs"
                                 );
 
+                var cus = await uow.CustomerRepository.GetAll().Where(s=>s.Status == "Active").Include(s=>s.CustomerLogs).ToListAsync();
+
                 return customers;
             }
             catch (Exception ex)

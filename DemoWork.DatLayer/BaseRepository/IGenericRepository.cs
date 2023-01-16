@@ -15,6 +15,7 @@ namespace DemoWork.DataLayer.BaseRepository
         Task DeleteAsync(T entity);
         Task DeleteManyAsync(Expression<Func<T, bool>> filter);
         Task<IEnumerable<T>> GetAllAsync();
+        IQueryable<T> GetAll();
         Task<T> FindAsync(Guid id);
         Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter = null,
                                           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,

@@ -104,7 +104,11 @@ namespace DemoWork.DataLayer.BaseRepository
         }
 
 
-       
+        public IQueryable<T> GetAll()
+        {
+            return _dbSet.AsQueryable();
+        }
+
 
 
     }
