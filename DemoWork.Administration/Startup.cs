@@ -52,19 +52,19 @@ namespace DemoWork.Administration
                 endpoints.MapAreaControllerRoute(
                    name: "AdministrationHome",
                    areaName: "Administration",
-                   pattern: "Administration/{controller=User}/{action=Index}"
+                   pattern: "/{controller=Customer}/{action=Index}"
                );
 
                 endpoints.MapAreaControllerRoute(
                   name: "AdministrationRegister",
                   areaName: "Administration/Account",
-                  pattern: "Administration/{controller=Account}/{action=Register}"
+                  pattern: "/{controller=Account}/{action=Register}"
               );
 
                 endpoints.MapAreaControllerRoute(
                 name: "AdministrationLogin",
                 areaName: "Administration/Account",
-                pattern: "Administration/{controller=Account}/{action=Login}"
+                pattern: "/{controller=Account}/{action=Login}"
             );
 
                 #endregion
