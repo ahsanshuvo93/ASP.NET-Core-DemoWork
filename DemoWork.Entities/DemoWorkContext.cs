@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DemoWork.Entities
 {
-    public class DemoWorkContext : IdentityDbContext
+    public class DemoWorkContext : IdentityDbContext<AccountUser>
     {
 
         //public DemoWorkContext(DbContextOptions<DemoWorkContext> options)

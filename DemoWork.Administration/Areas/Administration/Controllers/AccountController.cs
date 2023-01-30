@@ -1,4 +1,5 @@
-﻿using DemoWork.Entities.ViewModels;
+﻿using DemoWork.Entities.Models;
+using DemoWork.Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,10 @@ namespace DemoWork.Administration.Areas.Administration.Controllers
     [Area("Administration")]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AccountUser> _userManager;
+        private readonly SignInManager<AccountUser> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<AccountUser> userManager, SignInManager<AccountUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -32,10 +33,16 @@ namespace DemoWork.Administration.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new AccountUser()
                 {
                     UserName = model.Email,
                     Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    DateOfBirth = model.DateOfBirth,
+                    Country = model.Country,
+                    City = model.City,
+                    Status = "Active",
+                    CreatedAt = DateTime.Now,
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
