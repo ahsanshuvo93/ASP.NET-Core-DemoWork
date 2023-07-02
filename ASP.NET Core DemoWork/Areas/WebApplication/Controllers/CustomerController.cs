@@ -17,6 +17,8 @@ namespace ASP.NET_Core_DemoWork.Areas.WebApplication.Controllers
             _customerService = new CustomerService();
         }
 
+        //../customer/index
+        
         public async Task<IActionResult> Index()
         {
             

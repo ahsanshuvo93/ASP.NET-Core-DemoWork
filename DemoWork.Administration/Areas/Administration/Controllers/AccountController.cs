@@ -22,12 +22,15 @@ namespace DemoWork.Administration.Areas.Administration.Controllers
             _signInManager = signInManager;
         }
 
+        //../Account/Register
         [HttpGet]
         public async Task<IActionResult> Register()
         {
             return View();
         }
 
+
+        
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationViewModel model)
         {
@@ -65,6 +68,7 @@ namespace DemoWork.Administration.Areas.Administration.Controllers
             return View(model);
         }
 
+        //../Account/login
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()

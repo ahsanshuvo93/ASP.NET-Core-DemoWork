@@ -16,10 +16,10 @@ namespace DemoWork.Entities
         //   : base(options)
         //{
         //}
-        public DemoWorkContext(DbContextOptions<DemoWorkContext> options)
-          : base(options)
-        {
-        }
+        //public DemoWorkContext(DbContextOptions<DemoWorkContext> options)
+        //  : base(options)
+        //{
+        //}
 
         public DemoWorkContext()
         {
@@ -27,7 +27,7 @@ namespace DemoWork.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-NPF57F5;Database=DemoWork;User Id=sa;Password=123456;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-4RJ896C\AHSAN;Database=DemoWork;User Id=sa;Password=123456;MultipleActiveResultSets=true");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
