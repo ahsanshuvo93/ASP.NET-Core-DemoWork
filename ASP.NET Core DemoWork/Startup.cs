@@ -30,7 +30,7 @@ namespace ASP.NET_Core_DemoWork
             }
 
             app.UseRouting();
-
+            app.UseStaticFiles();
            
 
             //app.UsePathBase("/user/index");       // by using path

@@ -21,6 +21,7 @@ namespace ASP.NET_Core_DemoWork
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>().UseWebRoot("MyWebRoot");
                 });
     }
 }

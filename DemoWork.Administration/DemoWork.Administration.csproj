@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASP.NET Core DemoWork\DemoWork.csproj" />
     <ProjectReference Include="..\DemoWork.ServiceLayer\DemoWork.ServiceLayer.csproj" />
   </ItemGroup>
 

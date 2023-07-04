@@ -6,13 +6,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DemoWork.Administration
 {
@@ -20,12 +25,25 @@ namespace DemoWork.Administration
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        private readonly IConfiguration Configuration;
+        public static Dictionary<string, string> BaseURL { get; private set; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<AccountUser, IdentityRole>().AddEntityFrameworkStores<DemoWorkContext>();
             services.AddRazorPages();
             //services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddTransient<DemoWorkContext>();
+
+            BaseURL = Configuration.GetSection("BaseURL").GetChildren()
+                  .ToDictionary(x => x.Key, x => x.Value);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +58,20 @@ namespace DemoWork.Administration
 
             app.UseRouting();
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new EmbeddedFileProvider(
+                assembly: Assembly.Load(new AssemblyName("DemoWork")),
+                baseNamespace: "DemoWork")
+            });
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider("/DemoWork/wwwroot/")
+            //});
+
+
+            //app.UseStaticFiles();
             //app.UsePathBase("/user/index");                     // by using path
             app.UsePathBase("/Administration/user/index");        // by using name
 

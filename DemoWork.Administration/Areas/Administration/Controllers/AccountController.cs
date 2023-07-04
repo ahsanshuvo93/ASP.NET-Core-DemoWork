@@ -73,6 +73,7 @@ namespace DemoWork.Administration.Areas.Administration.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
+            ViewBag.SolutionBaseURL = Startup.BaseURL["SolutionBaseURL"];
             return View();
         }
         [HttpPost]
